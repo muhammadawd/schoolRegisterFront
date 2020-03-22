@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SCHOOL REGISTER</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="loans HTML Template">
+    <meta name="keywords" content="loans, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <!--<link href="img/favicon.ico" rel="shortcut icon"/>-->
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
+          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" href="assets/css/bootstrap-rtl.min.css"/>-->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="assets/css/flaticon.css"/>
+    <link rel="stylesheet" href="assets/css/slicknav.min.css"/>
+
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css"/>
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header Section -->
+<header class="header-section">
+    <a href="" class="site-logo">
+        <h4 class="text-white mb-0 pb-0">App<span style="color: #f43f00;font-weight: bold">R</span>oc</h4>
+        <!--<img src="logo.png" height="40px" alt="">-->
+    </a>
+    <nav class="header-nav">
+        <ul class="main-menu">
+            <!--<li><a href="" class="active">Home</a></li>-->
+            <!--<li><a href="about-us.html">About Us</a></li>-->
+            <!--<li><a href="#">Pages</a>-->
+            <!--<ul class="sub-menu">-->
+            <!--<li><a href="about-us.html">About Us</a></li>-->
+            <!--<li><a href="elements.html">elements</a></li>-->
+            <!--</ul>-->
+            <!--</li>-->
+            <!--<li><a href="news.html">News</a></li>-->
+            <!--<li><a href="contact.html">Contact</a></li>-->
+        </ul>
+        <div class="header-right">
+            <div class="hr-btn hr-btn-2">(965) 960-78-260</div>
+            <a href="tel:96078260" class="hr-btn"><i class="flaticon-029-telephone-1"></i>اتصل بنا</a>
+        </div>
+    </nav>
+</header>
+<!-- Header Section end -->
+
+<!-- Hero Section end -->
+<section class="hero-section" style="background: #ccc">
+    <div class="container">
+        <div class="row text-center">
+            <div class="offset-2 col-lg-8">
+                <form class="hero-form pt-3" id="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger text-right" role="alert">
+                                سيتم تحويلك تلقائيا على الموقع الخاص بك بعد التسجيل
+                                <br>
+                                <b>تنبيه عليك العلم بان كلمة المرور واسم المستخدم الخاصين بك هم</b>
+                                <br>
+                                admin - 123456
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-right mb-2">
+                            <input type="text" name="name" class="text-right mb-0" placeholder="الاسم">
+                            <span class="text-danger errors_span" id="name_errors"></span>
+                        </div>
+                        <div class="col-md-6 text-right mb-2">
+                            <input type="text" name="platform_name" class="text-right mb-1" placeholder="اسم التطبيق">
+                            <span class="text-danger errors_span" id="platform_name_errors"></span>
+                        </div>
+                        <div class="col-md-6 text-right mb-2">
+                            <input type="text" name="age" class="text-right mb-0" placeholder="العمر">
+                            <span class="text-danger errors_span" id="age_errors"></span>
+                        </div>
+                        <div class="col-md-6 text-center mb-2">
+                            <select class="form-control`" name="gender" dir="rtl" style="width:100%;height: 50px;">
+                                <option selected value="male">ذكر</option>
+                                <option value="female">انثي</option>
+                            </select>
+                            <span class="text-danger errors_span" id="gender_errors"></span>
+                        </div>
+                        <div class="col-md-6 text-right mb-2">
+                            <input type="text" name="student_count" class="text-right mb-0" placeholder="عدد الطلاب">
+                            <span class="text-danger errors_span" id="student_count_errors"></span>
+                        </div>
+                        <div class="col-md-6 text-right mb-2">
+                            <input type="text" name="phone" class="text-right mb-0" placeholder="رقم الهاتف">
+                            <span class="text-danger errors_span" id="phone_errors"></span>
+                        </div>
+                        <div class="col-md-12 text-right mb-2">
+                            <input type="text" name="address" class="text-right mb-0" placeholder="العنوان">
+                            <span class="text-danger errors_span" id="address_errors"></span>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <input class="form-control m-0" style="width: 20px;float: right" type="checkbox"
+                                   name="check">
+                            <label class="text-white m-2">
+                                قرأت التنبيه بالاعلى
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="site-btn btn disabled" id="sub_btn" disabled>تسجيل الدخول</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="assets/images/bg1.jpg"></div>
+    </div>
+</section>
+<!-- Hero Section end -->
+
+
+<section>
+    <div class="container-fluid">
+        <div class="row" dir="rtl">
+            <div class="col-md-4 p-0 m-0">
+                <img src="assets/images/1.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-4 p-0 m-0">
+                <img src="assets/images/2.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-4 p-0 m-0">
+                <img src="assets/images/3.jpg" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Section end -->
+<section class="why-section spad">
+    <div class="container">
+        <div class="text-center mb-5 pb-4">
+            <h2 class="font-weight-bold">لماذا نحن</h2>
+        </div>
+        <div class="row text-center" dir="rtl">
+            <div class="col-md-4">
+                <div class="icon-box-item">
+                    <div class="ib-icon">
+                        <i class="flaticon-012-24-hours"></i>
+                    </div>
+                    <div class="ib-text">
+                        <h5 class="font-weight-bold">الخدمة اونلاين</h5>
+                        <p>
+                            هذه الخدمة مجانية متوفرة اونلاين
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="icon-box-item">
+                    <div class="ib-icon">
+                        <i class="flaticon-036-customer-service"></i>
+                    </div>
+                    <div class="ib-text">
+                        <h5 class="font-weight-bold">دعم فني 24 ساعة</h5>
+                        <p>
+                            لدينا خدمات الدعم الفني متوفرة لديك خلال 24 ساعة
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="icon-box-item">
+                    <div class="ib-icon">
+                        <i class="flaticon-039-info"></i>
+                    </div>
+                    <div class="ib-text">
+                        <h5 class="font-weight-bold">استفسارات</h5>
+                        <p>
+                            يمكن تلقى الشكاوي والاستفسارات على الرقم الموضع اعلاه
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Why Section end -->
+
+<!-- Footer Section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+            All rights reserved
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+    </div>
+</footer>
+<!-- Footer Section end -->
+
+<!--====== Javascripts & Jquery ======-->
+<script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.slicknav.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+    $('input[name="check"]').click(() => {
+        if ($('input[name="check"]').is(":checked")) {
+            console.log('das')
+            $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+        } else {
+            $('#sub_btn').addClass('disabled').attr('disabled', 'disabled')
+        }
+    })
+    $('#form').on('submit', function (e) {
+        e.preventDefault();
+        $('.errors_span').text('')
+        $('#sub_btn').addClass('disabled').attr('disabled', 'disabled')
+        let data = $(this).serialize();
+        $.ajax({
+            url: 'http://approc.com/~approctest/teacher/api/teacher/create',
+            type: 'post',
+            data: data,
+            success: (response) => {
+                $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+                if (response.status) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تمت العملية بنجاح',
+                        text: 'سيتم الان تحويلك الى الموقع الخاص بك',
+                    })
+                    setTimeout(() => {
+                        location.href = response.data.link;
+                    }, 2000)
+                }
+            },
+            error: (xhr, status, error) => {
+                $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+                var err = eval("(" + xhr.responseText + ")");
+                if (xhr.status == 422) {
+                    $.each(err.data.validation_errors, (k, v) => {
+                        $(`#${k}_errors`).text(v[0])
+                    })
+                }
+            }
+        })
+
+    })
+</script>
+</body>
+</html>
