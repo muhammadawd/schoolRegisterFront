@@ -71,16 +71,12 @@
 <section class="hero-section" style="background: #ccc">
     <div class="container">
         <div class="row text-center">
-            <div class="offset-2 col-lg-8">
+            <div class="offset-md-2 col-lg-8">
                 <form class="hero-form pt-3" id="form">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-danger text-right" role="alert">
+                            <div class="alert alert-info text-right" role="alert">
                                 سيتم تحويلك تلقائيا على الموقع الخاص بك بعد التسجيل
-                                <br>
-                                <b>تنبيه عليك العلم بان كلمة المرور واسم المستخدم الخاصين بك هم</b>
-                                <br>
-                                admin - 123456
                             </div>
                         </div>
                         <div class="col-md-6 text-right mb-2">
@@ -118,7 +114,7 @@
                             <input class="form-control m-0" style="width: 20px;float: right" type="checkbox"
                                    name="check">
                             <label class="text-white m-2">
-                                قرأت التنبيه بالاعلى
+                                اقر بان كافة البيانات سليمة
                             </label>
                         </div>
                         <div class="col-md-12">
@@ -231,38 +227,69 @@
             $('#sub_btn').addClass('disabled').attr('disabled', 'disabled')
         }
     })
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    });
     $('#form').on('submit', function (e) {
         e.preventDefault();
         $('.errors_span').text('')
         $('#sub_btn').addClass('disabled').attr('disabled', 'disabled')
         let data = $(this).serialize();
-        $.ajax({
-            url: 'http://approc.com/~approctest/teacher/api/teacher/create',
-            type: 'post',
-            data: data,
-            success: (response) => {
-                $('#sub_btn').removeClass('disabled').removeAttr('disabled');
-                if (response.status) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'تمت العملية بنجاح',
-                        text: 'سيتم الان تحويلك الى الموقع الخاص بك',
-                    })
-                    setTimeout(() => {
-                        location.href = response.data.link;
-                    }, 2000)
-                }
-            },
-            error: (xhr, status, error) => {
-                $('#sub_btn').removeClass('disabled').removeAttr('disabled');
-                var err = eval("(" + xhr.responseText + ")");
-                if (xhr.status == 422) {
-                    $.each(err.data.validation_errors, (k, v) => {
-                        $(`#${k}_errors`).text(v[0])
-                    })
-                }
+
+        swalWithBootstrapButtons.fire({
+            title: 'معلومة',
+            html: `<h4 style="direction: rtl">اسم المستخدم الخاص بك: admin
+                      <br/>
+                   وكلمة المرور الخاصة بك : 123456</h4>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'تسجيل الان',
+            cancelButtonText: 'عودة',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+
+                $.ajax({
+                    url: 'http://approc.com/~approctest/teacher/api/teacher/create',
+                    type: 'post',
+                    data: data,
+                    success: (response) => {
+                        $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+                        if (response.status) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'سيتم الان تحويلك الى الموقع الخاص بك خلال 5 ثوان',
+                                html: `<h4 style="direction: rtl">اسم المستخدم الخاص بك: admin
+                                          <br/>
+                                       وكلمة المرور الخاصة بك : 123456</h4>`,
+                            })
+                            setTimeout(() => {
+                                location.href = response.data.link;
+                            }, 5000)
+                        }
+                    },
+                    error: (xhr, status, error) => {
+                        $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+                        var err = eval("(" + xhr.responseText + ")");
+                        if (xhr.status == 422) {
+                            $.each(err.data.validation_errors, (k, v) => {
+                                $(`#${k}_errors`).text(v[0])
+                            })
+                        }
+                    }
+                })
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                // cancelled
             }
         })
+        return
 
     })
 </script>
