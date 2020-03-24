@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>SCHOOL REGISTER</title>
@@ -60,8 +60,8 @@
             <!--<li><a href="contact.html">Contact</a></li>-->
         </ul>
         <div class="header-right">
-            <div class="hr-btn hr-btn-2">(965) 960-78-260</div>
-            <a href="tel:96078260" class="hr-btn"><i class="flaticon-029-telephone-1"></i>اتصل بنا</a>
+            <div class="hr-btn hr-btn-2">(010)633-45-117</div>
+            <a href="tel:01063345117" class="hr-btn"><i class="flaticon-029-telephone-1"></i>اتصل بنا</a>
         </div>
     </nav>
 </header>
@@ -74,11 +74,7 @@
             <div class="offset-md-2 col-lg-8">
                 <form class="hero-form pt-3" id="form">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info text-right" role="alert">
-                                سيتم تحويلك تلقائيا على الموقع الخاص بك بعد التسجيل
-                            </div>
-                        </div>
+
                         <div class="col-md-6 text-right mb-2">
                             <input type="text" name="name" class="text-right mb-0" placeholder="الاسم">
                             <span class="text-danger errors_span" id="name_errors"></span>
@@ -110,15 +106,8 @@
                             <input type="text" name="address" class="text-right mb-0" placeholder="العنوان">
                             <span class="text-danger errors_span" id="address_errors"></span>
                         </div>
-                        <div class="col-md-12 text-right">
-                            <input class="form-control m-0" style="width: 20px;float: right" type="checkbox"
-                                   name="check">
-                            <label class="text-white m-2">
-                                اقر بان كافة البيانات سليمة
-                            </label>
-                        </div>
                         <div class="col-md-12">
-                            <button class="site-btn btn disabled" id="sub_btn" disabled>تسجيل الدخول</button>
+                            <button class="site-btn btn" id="sub_btn">تسجيل الدخول</button>
                         </div>
                     </div>
                 </form>
@@ -219,17 +208,16 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-    $('input[name="check"]').click(() => {
-        if ($('input[name="check"]').is(":checked")) {
-            console.log('das')
-            $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+    $(document).on('click', '.check_alert', () => {
+        if ($('.check_alert').is(":checked")) {
+            $('.sub_btn').removeClass('disabled').removeAttr('disabled');
         } else {
-            $('#sub_btn').addClass('disabled').attr('disabled', 'disabled')
+            $('.sub_btn').addClass('disabled').attr('disabled', 'disabled')
         }
     })
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
-            confirmButton: 'btn btn-success',
+            confirmButton: 'btn btn-success sub_btn',
             cancelButton: 'btn btn-danger'
         },
         buttonsStyling: false
@@ -244,17 +232,37 @@
             title: 'معلومة',
             html: `<h4 style="direction: rtl">اسم المستخدم الخاص بك: admin
                       <br/>
-                   وكلمة المرور الخاصة بك : 123456</h4>`,
+                   وكلمة المرور الخاصة بك : 123456</h4>
+                      <br/>
+                   <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input class="form-control check_alert m-0" style="width: 20px;float: right" type="checkbox"
+                                   name="check">
+                            <label class="text-white m-2">
+                                قرأت اسم المستخدم وكلمة المرور
+                            </label>
+                        </div>
+                    </div>`,
             icon: 'warning',
-            showCancelButton: true,
+            showCancelButton: false,
             confirmButtonText: 'تسجيل الان',
             cancelButtonText: 'عودة',
-            reverseButtons: true
+            reverseButtons: true,
+            onOpen: function () {
+                swalWithBootstrapButtons.disableButtons(['Confirm']);
+                // swalWithBootstrapButtons.getInput().addEventListener('keyup', function(e) {
+                //     if(e.target.value === '') {
+                //         swal.disableConfirmButton();
+                //     } else {
+                //         swal.enableConfirmButton();
+                //     }
+                // })
+            }
         }).then((result) => {
             if (result.value) {
 
                 $.ajax({
-                    url: 'http://approc.com/~approctest/teacher/api/teacher/create',
+                    url: 'http://mfpq8.com/teacher/PrivateTeacherControlSys/api/teacher/create',
                     type: 'post',
                     data: data,
                     success: (response) => {
