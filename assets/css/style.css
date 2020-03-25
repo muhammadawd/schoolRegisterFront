@@ -342,7 +342,7 @@ Commom elements
     position: relative;
     transition: all 0.5s ease-in-out;
     top: -70px;
-    right: 20px;
+    right: 10px;
     min-height: 250px;
     transform-style: preserve-3d;
     transform: rotateY(-20deg);
