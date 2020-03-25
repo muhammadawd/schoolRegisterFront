@@ -80,7 +80,8 @@
                             <span class="text-danger errors_span" id="name_errors"></span>
                         </div>
                         <div class="col-md-6 text-right mb-2">
-                            <input type="text" name="platform_name" class="text-right mb-1" placeholder="اسم التطبيق">
+                            <input type="text" name="platform_name" class="text-right mb-1 hidden"
+                                   placeholder="اسم المنصه">
                             <span class="text-danger errors_span" id="platform_name_errors"></span>
                         </div>
                         <div class="col-md-6 text-right mb-2">
@@ -136,6 +137,54 @@
         </div>
     </div>
 </section>
+
+<!-- video Section end -->
+<section class="why-section spad">
+    <div class="container">
+        <div class="text-center mb-5 pb-4">
+            <h2 class="font-weight-bold mb-5"> مشاهدات </h2>
+        </div>
+        <div class="row text-center" dir="rtl">
+            <div class="col-md-6 mb-20">
+                <div class="icon-box-item">
+                    <div class="icon-box-container">
+                        <div class="icon-box-container-vedio icon-box-container-vedio-danger">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-20">
+                <div class="icon-box-item">
+                    <div class="icon-box-container">
+                        <div class="icon-box-container-vedio icon-box-container-vedio-primary">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="icon-box-item mb-20">
+                    <div class="icon-box-container">
+                        <div class="icon-box-container-vedio icon-box-container-vedio-warning">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="icon-box-item mb-20">
+                    <div class="icon-box-container">
+                        <div class="icon-box-container-vedio icon-box-container-vedio-success">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- video Section end -->
 
 <!-- Why Section end -->
 <section class="why-section spad">
@@ -228,76 +277,78 @@
         $('#sub_btn').addClass('disabled').attr('disabled', 'disabled')
         let data = $(this).serialize();
 
-        swalWithBootstrapButtons.fire({
-            title: 'معلومة',
-            html: `<h4 style="direction: rtl">اسم المستخدم الخاص بك: admin
-                      <br/>
-                   وكلمة المرور الخاصة بك : 123456</h4>
-                      <br/>
-                   <div class="row">
-                        <div class="col-md-12 text-right">
-                            <input class="form-control check_alert m-0" style="width: 20px;float: right" type="checkbox"
-                                   name="check">
-                            <label class="text-white m-2">
-                                قرأت اسم المستخدم وكلمة المرور
-                            </label>
-                        </div>
-                    </div>`,
-            icon: 'warning',
-            showCancelButton: false,
-            confirmButtonText: 'تسجيل الان',
-            cancelButtonText: 'عودة',
-            reverseButtons: true,
-            onOpen: function () {
-                swalWithBootstrapButtons.disableButtons(['Confirm']);
-                // swalWithBootstrapButtons.getInput().addEventListener('keyup', function(e) {
-                //     if(e.target.value === '') {
-                //         swal.disableConfirmButton();
-                //     } else {
-                //         swal.enableConfirmButton();
-                //     }
-                // })
-            }
-        }).then((result) => {
-            if (result.value) {
+        //  swalWithBootstrapButtons.fire({
+        // title: 'معلومة',
+        // html: `<h4 style="direction: rtl">اسم المستخدم الخاص بك: admin
+        //           <br/>
+        //       وكلمة المرور الخاصة بك : 123456</h4>
+        //           <br/>
+        //       <div class="row">
+        //             <div class="col-md-12 text-right">
+        //                 <input class="form-control check_alert m-0" style="width: 20px;float: right" type="checkbox"
+        //                       name="check">
+        //                 <label class="text-white m-2">
+        //                     قرأت اسم المستخدم وكلمة المرور
+        //                 </label>
+        //             </div>
+        //         </div>`,
+        // icon: 'warning',
+        // showCancelButton: false,
+        // confirmButtonText: 'تسجيل الان',
+        // cancelButtonText: 'عودة',
+        // reverseButtons: true,
+        // onOpen: function () {
+        //     swalWithBootstrapButtons.disableButtons(['Confirm']);
 
-                $.ajax({
-                    url: 'http://mfpq8.com/teacher/PrivateTeacherControlSys/api/teacher/create',
-                    type: 'post',
-                    data: data,
-                    success: (response) => {
-                        $('#sub_btn').removeClass('disabled').removeAttr('disabled');
-                        if (response.status) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'سيتم الان تحويلك الى الموقع الخاص بك خلال 5 ثوان',
-                                html: `<h4 style="direction: rtl">اسم المستخدم الخاص بك: admin
-                                          <br/>
-                                       وكلمة المرور الخاصة بك : 123456</h4>`,
-                            })
-                            setTimeout(() => {
-                                location.href = response.data.link;
-                            }, 5000)
-                        }
-                    },
-                    error: (xhr, status, error) => {
-                        $('#sub_btn').removeClass('disabled').removeAttr('disabled');
-                        var err = eval("(" + xhr.responseText + ")");
-                        if (xhr.status == 422) {
-                            $.each(err.data.validation_errors, (k, v) => {
-                                $(`#${k}_errors`).text(v[0])
-                            })
-                        }
-                    }
-                })
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                // cancelled
+        //     // swalWithBootstrapButtons.getInput().addEventListener('keyup', function(e) {
+        //     if(e.target.value === '') {
+        //         swal.disableConfirmButton();
+        //     } else {
+        //         swal.enableConfirmButton();
+        //     }
+        // })
+        // }
+        // }).then((result) => {
+        //     if (result.value) {
+
+        $.ajax({
+            url: 'http://mfpq8.com/teacher/PrivateTeacherControlSys/api/teacher/create',
+            type: 'post',
+            data: data,
+            success: (response) => {
+                $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+                if (response.status) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'سيتم التواصل معكم في اقرب وقت من احد مندوبنا ...لاتترد بالاتصال لو هناك اي استفسار   ',
+                        // html: `<h4 style="direction: rtl">اسم المستخدم الخاص بك: admin
+                        //           <br/>
+                        //       وكلمة المرور الخاصة بك : 123456</h4>`,
+                    })
+                    setTimeout(() => {
+                        location.href = response.data.link;
+                    }, 5000)
+                }
+            },
+            error: (xhr, status, error) => {
+                $('#sub_btn').removeClass('disabled').removeAttr('disabled');
+                var err = eval("(" + xhr.responseText + ")");
+                if (xhr.status == 422) {
+                    $.each(err.data.validation_errors, (k, v) => {
+                        $(`#${k}_errors`).text(v[0])
+                    })
+                }
             }
         })
-        return
+        //  }
+        // else if (
+        //     /* Read more about handling dismissals below */
+        //     result.dismiss === Swal.DismissReason.cancel
+        // ) {
+        //     // cancelled
+        // }
+        // })
+        // return
 
     })
 </script>
