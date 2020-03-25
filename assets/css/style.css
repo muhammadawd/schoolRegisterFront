@@ -1672,3 +1672,11 @@ Contact Page
         padding-left: 0;
     }
 }
+
+.text-gradient{ 
+    font-size: 52px;
+    background: -webkit-linear-gradient(109deg,#f43f00, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 6px;
+}
